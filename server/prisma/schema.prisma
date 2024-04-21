@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Quiz {
+  id                Int        @id @default(autoincrement())
+  title             String
+  description       String
+  imageSrc          String?
+  numberOfQuestions Int
+  createdAt         DateTime   @default(now())
+  user              User       @relation(fields: [userId], references: [id])
+  userId            Int
+  questions         Question[]
+  Result            Result[]
+}
+
+model Question {
+  id              Int      @id @default(autoincrement())
+  index           Int
+  questionContent String
+  numberOfAnswers Int
+  quiz            Quiz     @relation(fields: [quizId], references: [id])
+  quizId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  userId          Int
+  answers         Answer[]
+
+  @@unique([quizId, index])
+}
+
+model Answer {
+  id            Int      @id @default(autoincrement())
+  index         Int
+  answerContent String
+  correct       Boolean
+  question      Question @relation(fields: [questionId], references: [id])
+  questionId    Int
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  password  String
+  createdAt DateTime   @default(now())
+  quizzes   Quiz[]
+  questions Question[]
+  answers   Answer[]
+  Result    Result[]
+}
+
+model Result {
+  id                    Int      @id @default(autoincrement())
+  quiz                  Quiz     @relation(fields: [quizId], references: [id])
+  quizId                Int
+  quizTitle             String
+  user                  User     @relation(fields: [userId], references: [id])
+  userId                Int
+  points                Int
+  quizNumberOfQuestions Int
+  createdAt             DateTime @default(now())
+}
