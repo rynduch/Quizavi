@@ -1,6 +1,6 @@
 ## Quizavi
 
-Quizavi is a web platform that enables users to create quizzes for others. The application requires user authorization. Quizzes can be sorted by date, title and number of questions in ascending or descending order. Quiz can be deleted only by its author. Quiz results are saved and can be viewed in a dedicated tab.
+Quizavi is a web platform that enables users to create quizzes for others. The application requires user authorization. Quizzes can be sorted by date, title and number of questions in ascending or descending order. A quiz can be deleted only by its author. Quiz results are saved and can be viewed in a dedicated tab.
 
 ## Requirements
 
