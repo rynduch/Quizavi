@@ -38,7 +38,7 @@ export const LoginPage: FC = () => {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent'
                 }}>
-                    <Title size="120">Quizavi</Title>
+                    <Title size="120" m="50">Quizavi</Title>
                 </div>
             </Grid.Col>
             <Grid.Col span={{base: 12, md: 6, lg: 6}}>
